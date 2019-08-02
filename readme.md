@@ -238,8 +238,176 @@ Pada Barang ada **Post, Get, Put, Delete** terletak pada **Application/controler
 	}
 ```
 
+### Untuk menampilkan keseluruhan data dan fungsi di Pembelian:
 
 
+**Get**
+
+```sql
+	function index(){
+		$data = json_decode($this->api->request('get', 'pembelian'), TRUE);
+		$data['beli'] = $data['items'];
+
+		$this->load->view('header/header');
+		$this->load->view('pembelian/list', $data);
+		$this->load->view('footer/footer');	
+	}
+```
+
+```sql
+	function aksipembelian(){
+		$data = array(
+				'id_supplier'	=> $this->input->post('id_supplier'),
+				'kd_barang'	=> $this->input->post('kd_barang'),
+				'tanggal'		=> date('Y-m-d'),
+				'jml'		=> $this->input->post('jml'),
+				'harga'		=> $this->input->post('harga'),
+			);
+
+		$a = json_decode($this->api->request('post', 'pembelian', $data), TRUE);
+
+        if ($a) {
+            echo json_encode('success') ;
+        }
+	}
+```
+
+### Untuk menampilkan keseluruhan data dan fungsi di Penjualan:
+
+**Get**
+
+```sql
+	function detil($id = null)
+	{
+		$data = json_decode($this->api->request('get', 'penjualan'), TRUE);
+		$dataFilter = $this->arr_search($data['items'], "kd_transaksi", $id);
+		
+		if ($id === null) {
+
+			echo "Error";
+		} elseif (is_array($dataFilter) === true) {
+			# code...
+			echo "Data tidak ditemukan";
+		} else {
+			$response = json_decode($this->api->request('get', 'barang'), TRUE);
+			$barang = $this->arr_search($response['items'], "kd_barang", $dataFilter[0]['kd_barang']);
+
+			$data['dtl'] = $dataFilter;
+			$data['jualDtl'] = $barang;
+
+			$this->load->view('header/header');
+			$this->load->view('penjualan/detil', $data);
+			$this->load->view('footer/footer');
+		}
+	}
+```
+
+```sql
+	function aksijual()
+	{
+		$data = array(
+			'kd_customer'	=> $this->input->post('kd_customer'),
+			'kd_barang'		=> $this->input->post('kd_barang'),
+			'tanggal'		=> date('Y-m-d'),
+			'jml'			=> $this->input->post('jml'),
+			'harga'			=> $this->input->post('harga'),
+		);
+
+		$z = json_decode($this->api->request('post', 'penjualan', $data), TRUE);
+
+		if ($z) {
+			echo '<script language="javascript">';
+				echo 'alert("Data Berhasil Dihapus")';
+				echo '</script>';
+				redirect('barang', 'refresh');
+		}		
+	}
+```
+
+### Untuk menampilkan keseluruhan data dan fungsi di Supplier:
+
+
+**Get**
+
+```sql
+	function detil($id = null)
+	{
+		$data = json_decode($this->api->request('get', 'supplier'), TRUE);
+		$dataDetail = $this->arr_search($data['items'], "id_supplier", $id);
+
+		if ($id === null) {
+			echo "Error";
+		} elseif (is_array($dataDetail) === false) {
+			echo "Data tidak ditemukan";
+		} else {
+			$data['dtl'] = $dataDetail[0];
+			$this->load->view('header/header');
+			$this->load->view('supplier/detil', $data);
+			$this->load->view('footer/footer');
+		}
+	}
+```
+
+**Post**
+
+```sql
+	function tambah($d = null)
+	{
+		if ($d === null) {
+			//echo "Form tambah";
+			$this->load->view('header/header');
+			$this->load->view('supplier/tambah');
+			$this->load->view('footer/footer');
+		} elseif ($d === 'proses') {
+
+			$data = array(
+				'nm_supplier'	=> $this->input->post('nm_supplier'),
+				'alamat'		=> $this->input->post('alamat'),
+				'no_tlp'		=> $this->input->post('no_tlp')
+			);
+
+			$this->api->request('post', 'supplier', $data);
+			echo '<script language="javascript">';
+			echo 'alert("Data Berhasil Ditambah")';
+			echo '</script>';
+			redirect('supplier', 'refresh');
+		}
+	}
+```
+
+**Put**
+
+```sql
+	function aksiedit()
+	{
+		$data = array(
+			'nm_supplier'		=> $this->input->post('nm_supplier'),
+			'alamat'		=> $this->input->post('alamat'),
+			'no_tlp'		=> $this->input->post('no_tlp')
+		);
+		$this->api->request('PUT', 'supplier/' . $this->input->post('id_supplier'), $data);
+
+		echo '<script language="javascript">';
+		echo 'alert("Data Berhasil Diubah")';
+		echo '</script>';
+		redirect('supplier', 'refresh');
+	}
+```
+
+**Delete**
+
+```sql
+	function hapus($id = null)
+	{
+		if (!empty($id)) {
+			$this->api->request('delete', 'supplier/' . $id);
+			echo '<script language="javascript">';
+			echo 'alert("Data Berhasil Dihapus")';
+			echo '</script>';
+			redirect('supplier', 'refresh');
+		}
+	}
+```
 
 ----------------
 
