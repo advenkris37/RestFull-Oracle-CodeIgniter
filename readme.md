@@ -23,3 +23,10 @@ Lokasi:
 Anda dapat merubah variable berdasarkan kebutuhan anda  sesuai dengan variable pada Database pada **application/js/app.js**
 
 ![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/2.png)
+----------------
+
+### Table Database
+
+Database Barang
+
+![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/3.png)
