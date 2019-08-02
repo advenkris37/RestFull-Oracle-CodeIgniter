@@ -38,7 +38,7 @@ Anda dapat merubah variable berdasarkan kebutuhan anda  sesuai dengan variable p
 
 Pada Barang ada **Post, Get, Put, Delete** terletak pada **Application/controlers/Barang** 
 
-- Untuk menampilkan keseluruhan data dan fungsi di barang:
+### Untuk menampilkan keseluruhan data dan fungsi di barang:
 
 **Get**
 
@@ -141,7 +141,7 @@ Pada Barang ada **Post, Get, Put, Delete** terletak pada **Application/controler
 	}
 ```
 
-- Untuk menampilkan keseluruhan data dan fungsi di Customer:
+### Untuk menampilkan keseluruhan data dan fungsi di Customer:
 
 **Get**
 
