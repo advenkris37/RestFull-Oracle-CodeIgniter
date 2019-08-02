@@ -1,15 +1,21 @@
 # RestFull Oracle With CodeIgniter
 
+#### Fungsi Melalui RestFull
+- Tambah Data
+- Hapus Data
+- Edit Data
+- Tampil Data
+
 #### Prepare :
 - Oracle 11G atau versi lainnya
 - CodeIgniter (yang sudah terintegrasi dengan OVA)
 
-#### Referensi :
+### Referensi :
 - Youtube [Link](https://www.youtube.com/watch?v=ZAUJmiW1w2Y).
 - Oracle Documentation [Link](https://www.oracle.com/webfolder/technetwork/tutorials/obe/db/apex/r51/restful_web_services/restful_web_services.html#overview).
 ----------------
 
-#### Setting di CodeIgniter
+### Setting di CodeIgniter
 Anda dapat merubah koneksi CI yang terubung dengan API dari Oracle di **application/libraries/Api.php**
 
 ```
@@ -23,6 +29,121 @@ Lokasi:
 Anda dapat merubah variable berdasarkan kebutuhan anda  sesuai dengan variable pada Database pada **application/js/app.js**
 
 ![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/2.png)
+
+----------------
+
+### Fungsi RestFull 
+
+- Fungsi semua ini terletak di **Application/controlers** 
+
+Pada Barang ada **Post, Get, Put, Delete** terletak pada **Application/controlers/Barang** 
+
+Untuk menampilkan keseluruhan data di barang:
+
+**Get
+
+```sql
+	function index()
+	{
+		//list barang
+		$data = json_decode($this->api->request('get', 'barang'), TRUE);
+		$data['barang'] = $data['items'];
+
+		$this->load->view('header/header');
+		$this->load->view('barang/list', $data);
+		$this->load->view('footer/footer');
+	}
+```
+
+```sql
+	function detil($id = null)
+	{
+		$data = json_decode($this->api->request('get', 'barang'), TRUE);
+		$dataDetail = $this->arr_search($data['items'], "kd_barang", $id);
+
+		if ($id === null) {
+			echo "Error";
+		} elseif (is_array($dataDetail) === false) {
+			echo "Data tidak ditemukan";
+		} else {
+			$data['dtl'] = $dataDetail[0];
+			$this->load->view('header/header');
+			$this->load->view('barang/detil', $data);
+			$this->load->view('footer/footer');
+		}
+	}
+```
+
+**Post
+
+```sql
+	function tambah($d = null)
+	{
+		if ($d === null) {
+			//echo "Form tambah";
+			$this->load->view('header/header');
+			$this->load->view('barang/tambah');
+			$this->load->view('footer/footer');
+		} elseif ($d === 'proses') {
+
+			$data = array(
+				'nm_barang'		=> $this->input->post('nm_barang'),
+				'harga'		=> $this->input->post('harga'),
+				'jml_barang' => $this->input->post('jml_barang'),
+			);
+
+			$this->api->request('post', 'barang', $data);
+			echo '<script language="javascript">';
+			echo 'alert("Data Berhasil Ditambah")';
+			echo '</script>';
+			redirect('barang', 'refresh');
+		}
+	}
+```
+
+**Put
+
+```sql
+	function aksiedit()
+	{
+		$data = array(
+			'nm_barang'		=> $this->input->post('nm_barang'),
+			'harga'		=> $this->input->post('harga'),
+			'jml_barang' => $this->input->post('jml_barang'),
+		);
+		$this->api->request('PUT', 'barang/' . $this->input->post('kd_barang'), $data);
+
+		echo '<script language="javascript">';
+		echo 'alert("Data Berhasil Diubah")';
+		echo '</script>';
+		redirect('barang', 'refresh');
+	}
+```
+
+**Delete
+
+```sql
+	function hapus($id = null)
+	{
+		if (!empty($id)) {
+			$a = $this->api->request('delete', 'barang/' . $id);
+			if ($a) {
+				echo '<script language="javascript">';
+				echo 'alert("Data Berhasil Dihapus")';
+				echo '</script>';
+				redirect('barang', 'refresh');
+				// echo '<script language="javascript">';
+				// echo 'alert("Data Berhasil Dihapus")';
+				// echo '</script>';
+				// redirect('barang', 'refresh');
+			}
+		}
+	}
+```
+
+
+
+
 
 ----------------
 
