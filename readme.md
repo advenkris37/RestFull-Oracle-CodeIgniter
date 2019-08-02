@@ -40,7 +40,7 @@ Pada Barang ada **Post, Get, Put, Delete** terletak pada **Application/controler
 
 Untuk menampilkan keseluruhan data di barang:
 
-**Get
+**Get**
 
 ```sql
 	function index()
@@ -74,7 +74,7 @@ Untuk menampilkan keseluruhan data di barang:
 	}
 ```
 
-**Post
+**Post**
 
 ```sql
 	function tambah($d = null)
@@ -101,7 +101,7 @@ Untuk menampilkan keseluruhan data di barang:
 	}
 ```
 
-**Put
+**Put**
 
 ```sql
 	function aksiedit()
@@ -120,7 +120,7 @@ Untuk menampilkan keseluruhan data di barang:
 	}
 ```
 
-**Delete
+**Delete**
 
 ```sql
 	function hapus($id = null)
