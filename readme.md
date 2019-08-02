@@ -28,5 +28,21 @@ Anda dapat merubah variable berdasarkan kebutuhan anda  sesuai dengan variable p
 ### Table Database
 
 Database Barang
+
 ![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/3.png)
 
+Database Customer
+
+![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/4.png)
+
+Database Pembelian
+
+![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/5.png)
+
+Database Penjualan
+
+![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/6.png)
+
+Database Supplier
+
+![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/7.png)
