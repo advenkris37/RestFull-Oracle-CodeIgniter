@@ -14,4 +14,5 @@ Anda dapat merubah koneksi CI yang terubung dengan API dari Oracle di applicatio
 >$this->client = new Client(['base_uri' => 'http://192.168.43.75:8888/apex/obe/']);
 
 Lokasi: 
+
 ![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/1.png)
