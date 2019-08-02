@@ -27,22 +27,47 @@ Anda dapat merubah variable berdasarkan kebutuhan anda  sesuai dengan variable p
 
 ### Table Database
 
-Database Barang
+- Database Barang
 
 ![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/3.png)
 
-Database Customer
+- Database Customer
 
 ![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/4.png)
 
-Database Pembelian
+- Database Pembelian
 
 ![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/5.png)
 
-Database Penjualan
+- Database Penjualan
 
 ![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/6.png)
 
-Database Supplier
+- Database Supplier
 
 ![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/7.png)
+----------------
+
+# RestFull
+
+```
+Setiap bagian pada action, disesuaikan dengan Method yang ada
+```
+
+Semua menggunakan metode 
+- Post
+- Put
+- Get
+- Delete
+
+```
+Untuk server local atau tidak menggunakan SSL setting Require Secure Access : NO
+```
+
+```
+Untuk server yang sudah menggunakan HTTPS setting Require Secure Access : YES
+```
+
+- Kebutuhan RestAPI pada program ini, ubah sesuai kebutuhan kalian dengan method yang kalian butuhkan
+
+![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/8.png)
