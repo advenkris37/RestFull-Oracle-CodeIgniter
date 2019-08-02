@@ -38,7 +38,7 @@ Anda dapat merubah variable berdasarkan kebutuhan anda  sesuai dengan variable p
 
 Pada Barang ada **Post, Get, Put, Delete** terletak pada **Application/controlers/Barang** 
 
-Untuk menampilkan keseluruhan data di barang:
+- Untuk menampilkan keseluruhan data dan fungsi di barang:
 
 **Get**
 
@@ -141,6 +141,102 @@ Untuk menampilkan keseluruhan data di barang:
 	}
 ```
 
+- Untuk menampilkan keseluruhan data dan fungsi di Customer:
+
+**Get**
+
+```sql
+	function index()
+	{
+		//list customer
+		$data = json_decode($this->api->request('get', 'customer'), TRUE);
+		$data['customer'] = $data['items'];
+
+		$this->load->view('header/header');
+		$this->load->view('customer/list', $data);
+		$this->load->view('footer/footer');
+	}
+```
+
+```sql
+	function detil($id = null)
+	{
+		$data = json_decode($this->api->request('get', 'customer'), TRUE);
+		$dataDetail = $this->arr_search($data['items'], "kd_customer", $id);
+
+		if ($id === null) {
+			echo "Error";
+		} elseif (is_array($dataDetail) === false) {
+			echo "Data tidak ditemukan";
+		} else {
+			$data['dtl'] = $dataDetail[0];
+			$this->load->view('header/header');
+			$this->load->view('customer/detil', $data);
+			$this->load->view('footer/footer');
+		}
+	}
+```
+
+**Post**
+
+```sql
+	function tambah($d = null)
+	{
+		if ($d === null) {
+			//echo "Form tambah";
+			$this->load->view('header/header');
+			$this->load->view('customer/tambah');
+			$this->load->view('footer/footer');
+		} elseif ($d === 'proses') {
+
+			$data = array(
+				'username'		=> $this->input->post('username'),
+				'alamat'		=> $this->input->post('alamat'),
+				'no_tlp'		=> $this->input->post('no_tlp')
+			);
+
+			$this->api->request('post', 'customer', $data);
+			echo '<script language="javascript">';
+			echo 'alert("Data Berhasil Ditambah")';
+			echo '</script>';
+			redirect('customer', 'refresh');
+		}
+	}
+```
+
+**Put**
+
+```sql
+	function aksiedit()
+	{
+		$data = array(
+			'username'		=> $this->input->post('username'),
+			'alamat'		=> $this->input->post('alamat'),
+			'no_tlp'		=> trim($this->input->post('no_tlp'))
+		);
+		$this->api->request('PUT', 'customer/' . $this->input->post('kd_customer'), $data);
+
+		echo '<script language="javascript">';
+		echo 'alert("Data Berhasil Diubah")';
+		echo '</script>';
+		redirect('customer', 'refresh');
+	}
+```
+
+**Delete**
+
+```sql
+	function hapus($id = null)
+	{
+		if (!empty($id)) {
+			$a = $this->api->request('delete', 'customer/' . $id);
+			echo '<script language="javascript">';
+			echo 'alert("Data Berhasil Dihapus")';
+			echo '</script>';
+			redirect('customer', 'refresh');
+		}
+	}
+```
 
 
 
