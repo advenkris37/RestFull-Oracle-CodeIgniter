@@ -10,9 +10,16 @@
 ----------------
 
 #### Setting di CodeIgniter
-Anda dapat merubah koneksi CI yang terubung dengan API dari Oracle di application/libraries/Api.php
->$this->client = new Client(['base_uri' => 'http://192.168.43.75:8888/apex/obe/']);
+Anda dapat merubah koneksi CI yang terubung dengan API dari Oracle di **application/libraries/Api.php**
+
+```
+$this->client = new Client(['base_uri' => 'http://192.168.43.75:8888/apex/obe/']);
+```
 
 Lokasi: 
 
 ![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/1.png)
+
+Anda dapat merubah variable berdasarkan kebutuhan anda  sesuai dengan variable pada Database pada **application/js/app.js**
+
+![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/2.png)
