@@ -517,9 +517,17 @@ Query ini digunakan untuk menghasilkan data yang kita mau dari Database
 
 # Tampilan UI dari Hasil Pengambilan data API
 
+#### Tambah Data
+
+![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/a3.png)
+
 #### Tampilan Barang
 
 ![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/t1.png)
+
+#### Edit Barang
+
+![gambar Get Product](https://github.com/advenkris37/RestFull-Oracle-CodeIgniter/blob/master/assets/a2.png)
 
 #### Tampilan Customer
 
